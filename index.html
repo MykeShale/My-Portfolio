@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mike Ayoti | Fullstack Developer | Portfolio">
+    <meta name="author" content="Mike Ayoti">
+    <meta name="theme-color" content="#ffffff">
+    <title>Mike Ayoti | Fullstack Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script>
+</head>
+
+<body>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="#hero">
+                    <span class="brand-text">Mike</span>
+                    <span class="brand-dot">.</span>
+                </a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#portfolio" class="nav-link">Projects</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-social">
+                    <a href="https://www.linkedin.com/in/mikeayoti" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/MykeShale" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Mike Ayoti</h1>
+                <p class="hero-subtitle">Fullstack Developer & Designer</p>
+                <div class="hero-description">
+                    <p>Creating beautiful and functional web experiences</p>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#about" class="cta-button primary">Learn More</a>
+                    <a href="#contact" class="cta-button secondary">Get in Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/profile.png" alt="Mike Ayoti" class="profile-image">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="img/profile.png" alt="Mike Ayoti" class="profile-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="experience-badge">
+                        <span class="years">5+</span>
+                        <span class="text">Years of<br>Experience</span>
+                    </div>
+                </div>
+                
+                <div class="about-text">
+                    <div class="about-intro">
+                        <h3>Full Stack Developer & Designer</h3>
+                        <p>I am a motivated and experienced full-stack web developer with expertise in frontend and backend technologies. My focus is on building modern, high-performance web applications with a keen eye for user experience.</p>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+
+                    <div class="about-details">
+                        <div class="detail-card">
+                            <div class="card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Education</h4>
+                                <div class="education-item">
+                                    <h5>Murang'a University of Technology</h5>
+                                    <p>Bachelor of Science in Computer Science</p>
+                                    <span class="year">2017 - 2022</span>
+                                </div>
+                                <div class="education-item">
+                                    <h5>Power Learn Project Africa</h5>
+                                    <p>Software Engineering & Fullstack Development</p>
+                                    <span class="year">2022</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="card-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Technical Skills</h4>
+                                <div class="skills-list">
+                                    <div class="skill-tag">React.js</div>
+                                    <div class="skill-tag">Node.js</div>
+                                    <div class="skill-tag">Next.js</div>
+                                    <div class="skill-tag">MongoDB</div>
+                                    <div class="skill-tag">MySQL</div>
+                                    <div class="skill-tag">AWS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-cta">
+                        <a href="#contact" class="cta-button primary">Get In Touch</a>
+                        <a href="resume.pdf" class="cta-button secondary" download>
+                            <i class="fas fa-download"></i>
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Experience</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Nov 2023 - Present</span>
+                        <h3>Frontend Developer & CMO</h3>
+                        <h4>Cashfin Africa</h4>
+                        <p>Leading the development of a comprehensive web platform with advanced features and user-friendly interface.</p>
+                        <ul>
+                            <li>Designed and developed the company's website using React.js and Next.js</li>
+                            <li>Led and executed comprehensive marketing strategies</li>
+                            <li>Managed multi-channel marketing campaigns</li>
+                            <li>Implemented user-friendly features and ensured mobile responsiveness</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">June 2024 - Nov 2024</span>
+                        <h3>IT Consultant</h3>
+                        <h4>Genteel Fashion</h4>
+                        <p>Developed and implemented IT strategies aligned with the company's business objectives.</p>
+                        <ul>
+                            <li>Conducted website data analysis to track user behavior</li>
+                            <li>Provided technical support for Shopify store functionality</li>
+                            <li>Researched emerging e-commerce trends and implemented best practices</li>
+                            <li>Identified and resolved performance bottlenecks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">May 2024 - Aug 2024</span>
+                        <h3>Web Developer</h3>
+                        <h4>Goldman Properties Ltd</h4>
+                        <p>Designed and developed a real estate platform with an intuitive UI/UX for better user engagement.</p>
+                        <ul>
+                            <li>Integrated dynamic search functionalities and lead generation tools</li>
+                            <li>Ensured a seamless browsing experience across different devices</li>
+                            <li>Optimized website speed and performance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Projects</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="portfolio-categories">
+                <button class="portfolio-filter active" data-filter="all">All</button>
+                <button class="portfolio-filter" data-filter="business">Business Ventures</button>
+                <button class="portfolio-filter" data-filter="web">Web Projects</button>
+            </div>
+
+            <div class="project-grid">
+                <!-- Business Ventures -->
+                <div class="project-card" data-category="business">
+                    <div class="project-image">
+                        <img src="img/theshalez.jpg" alt="The Shalez">
+                    </div>
+                    <div class="project-content">
+                        <h3>The Shalez</h3>
+                        <p class="project-tag">Founder & CEO</p>
+                        <p>A full-service creative agency specializing in graphic design, digital marketing, website development, and hosting.</p>
+                        <div class="project-tech">
+                            <span>React.js</span>
+                            <span>Next.js</span>
+                            <span>WordPress</span>
+                            <span>Shopify</span>
+                        </div>
+                        <a href="https://theshalez.co.ke" target="_blank" class="project-link">Visit Website</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="business">
+                    <div class="project-image">
+                        <img src="img/angahost.jpg" alt="angaHOST">
+                    </div>
+                    <div class="project-content">
+                        <h3>angaHOST</h3>
+                        <p class="project-tag">Founder & CEO</p>
+                        <p>A web design, development, and hosting company providing end-to-end digital solutions for businesses and individuals.</p>
+                        <div class="project-tech">
+                            <span>WordPress</span>
+                            <span>React.js</span>
+                            <span>Next.js</span>
+                            <span>AWS</span>
+                        </div>
+                        <a href="https://angahost.co.ke" target="_blank" class="project-link">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Web Projects (will be loaded from GitHub) -->
+            <div id="githubProjects" class="github-projects">
+                <!-- Projects will be dynamically loaded from GitHub API -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Technologies Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills & Technologies</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <div class="skill-items">
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                            <p>HTML5</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                            <p>CSS3</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                            <p>JavaScript</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                            <p>React.js</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js">
+                            <p>Next.js</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS">
+                            <p>Tailwind CSS</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap">
+                            <p>Bootstrap</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Backend & Database</h3>
+                    <div class="skill-items">
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                            <p>Node.js</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js">
+                            <p>Express.js</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+                            <p>MongoDB</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                            <p>MySQL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>UI/UX & Design</h3>
+                    <div class="skill-items">
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                            <p>Figma</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Adobe Photoshop">
+                            <p>Photoshop</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Adobe Illustrator">
+                            <p>Illustrator</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>CMS & E-commerce</h3>
+                    <div class="skill-items">
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="WordPress">
+                            <p>WordPress</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg" alt="Shopify">
+                            <p>Shopify</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>DevOps & Deployment</h3>
+                    <div class="skill-items">
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                            <p>Git</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                            <p>GitHub</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS">
+                            <p>AWS</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" alt="Netlify">
+                            <p>Netlify</p>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="Vercel">
+                            <p>Vercel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info-card">
+                    <h3>Let's Connect</h3>
+                    <p>Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:mikeayoti96@gmail.com">mikeayoti96@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <a href="tel:+254792099302">+254 792 099 302</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-connect">
+                        <h4>Connect with me</h4>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/mikeayoti" target="_blank" class="social-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/MykeShale" target="_blank" class="social-icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://twitter.com/mikeayoti" target="_blank" class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-card">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subject">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mike Ayoti | Fullstack Developer</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/mikeayoti">LinkedIn</a>
+                <a href="https://github.com/MykeShale">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
