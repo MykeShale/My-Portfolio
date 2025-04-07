@@ -498,7 +498,7 @@ body {
   }
 }
 
-/* About Section Styles */
+/* About Section */
 .about {
     padding: 100px 0;
     background-color: var(--bg-color);
@@ -506,36 +506,23 @@ body {
     overflow: hidden;
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    color: var(--text-color);
-    margin-bottom: 15px;
-    position: relative;
-    display: inline-block;
-}
-
-.section-line {
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    margin: 0 auto;
-    border-radius: 2px;
-}
-
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     gap: 50px;
-    align-items: center;
+    align-items: start;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .about-image {
     position: relative;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .image-wrapper {
@@ -543,16 +530,20 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px var(--shadow-color);
-}
-
-.profile-image {
     width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
+    aspect-ratio: 1;
+    background-color: var(--card-bg);
 }
 
-.image-wrapper:hover .profile-image {
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.image-wrapper:hover img {
     transform: scale(1.05);
 }
 
@@ -564,35 +555,45 @@ body {
     bottom: 0;
     background: linear-gradient(45deg, rgba(0, 188, 212, 0.2), rgba(0, 150, 136, 0.2));
     pointer-events: none;
+    z-index: 1;
 }
 
 .experience-badge {
     position: absolute;
-    bottom: -20px;
-    right: -20px;
+    bottom: 0;
+    right: 0;
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     color: white;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 5px 15px var(--shadow-color);
     text-align: center;
-    min-width: 120px;
+    min-width: 140px;
+    z-index: 2;
+    transform: translate(20%, 20%);
 }
 
 .experience-badge .years {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     display: block;
     line-height: 1;
 }
 
 .experience-badge .text {
-    font-size: 0.9rem;
+    font-size: 1rem;
     opacity: 0.9;
 }
 
 .about-text {
     padding: 20px;
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-color);
+}
+
+.about-intro {
+    margin-bottom: 40px;
 }
 
 .about-intro h3 {
@@ -672,6 +673,11 @@ body {
     justify-content: center;
     color: white;
     font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
 }
 
 .card-content h4 {
@@ -682,6 +688,10 @@ body {
 
 .education-item {
     margin-bottom: 15px;
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
 }
 
 .education-item h5 {
@@ -758,7 +768,7 @@ body {
     box-shadow: 0 5px 15px var(--shadow-color);
 }
 
-/* Responsive Design */
+/* Responsive Design for About Section */
 @media (max-width: 1024px) {
     .about-content {
         grid-template-columns: 1fr;
@@ -766,12 +776,12 @@ body {
     }
 
     .about-image {
-        max-width: 500px;
-        margin: 0 auto;
+        max-width: 400px;
+        order: -1;
     }
 
-    .about-details {
-        grid-template-columns: 1fr;
+    .experience-badge {
+        transform: translate(10%, 10%);
     }
 }
 
@@ -780,40 +790,33 @@ body {
         padding: 60px 0;
     }
 
-    .section-header h2 {
+    .about-image {
+        max-width: 350px;
+    }
+
+    .experience-badge {
+        padding: 15px;
+        min-width: 120px;
+    }
+
+    .experience-badge .years {
         font-size: 2rem;
     }
 
-    .about-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .about-cta {
-        flex-direction: column;
-    }
-
-    .about-cta .cta-button {
-        width: 100%;
-        justify-content: center;
+    .experience-badge .text {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
-    .about-stats {
-        grid-template-columns: 1fr;
+    .about-image {
+        max-width: 300px;
     }
 
-    .stat-item {
-        padding: 15px;
-    }
-
-    .detail-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .card-icon {
-        margin: 0 auto;
+    .experience-badge {
+        transform: translate(5%, 5%);
+        padding: 12px;
+        min-width: 100px;
     }
 }
 
@@ -1063,8 +1066,123 @@ body {
 
 .github-projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sample-projects-notice {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.github-projects .project-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  transition: transform 0.3s ease;
+  border: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.github-projects .project-card:hover {
+  transform: translateY(-5px);
+}
+
+.github-projects .project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.github-projects .project-content h3 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.github-projects .project-content p {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.github-projects .project-tech {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.github-projects .project-tech span {
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+}
+
+.github-projects .project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.github-projects .project-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+}
+
+.loading, .no-projects, .error-message {
+  text-align: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  margin: 1rem 0;
+}
+
+.loading {
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.no-projects {
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.error-message {
+  color: var(--error-color);
+}
+
+.error-details {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
 }
 
 /* Skills Section */

@@ -135,79 +135,251 @@ const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
 
 lazyLoadSections.forEach(section => lazyLoadObserver.observe(section));
 
-// Fetch GitHub Projects
-function fetchGitHubProjects() {
+// GitHub Projects
+async function fetchGitHubProjects() {
     const githubProjectsContainer = document.getElementById('githubProjects');
-    const username = 'MykeShale'; // Your GitHub username
-    
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(projects => {
-            if (projects.length === 0) {
-                githubProjectsContainer.innerHTML = '<p class="no-projects">No projects found. Check back later!</p>';
-                return;
-            }
-            
-            let projectsAdded = 0;
-            
-            projects.forEach(project => {
-                // Skip forked repositories
-                if (project.fork) return;
-                
-                // Get languages for the project
-                fetch(project.languages_url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(languages => {
-                        const languageTags = Object.keys(languages).slice(0, 3);
-                        
-                        const projectCard = document.createElement('div');
-                        projectCard.className = 'project-card';
-                        projectCard.setAttribute('data-category', 'web');
-                        
-                        projectCard.innerHTML = `
-                            <div class="project-image">
-                                <img src="https://opengraph.githubassets.com/1/${username}/${project.name}" alt="${project.name}">
-                            </div>
-                            <div class="project-content">
-                                <h3>${project.name}</h3>
-                                <p class="project-tag">Web Project</p>
-                                <p>${project.description || 'A web development project'}</p>
-                                <div class="project-tech">
-                                    ${languageTags.map(lang => `<span>${lang}</span>`).join('')}
-                                </div>
-                                <a href="${project.html_url}" target="_blank" class="project-link">View Project</a>
-                            </div>
-                        `;
-                        
-                        githubProjectsContainer.appendChild(projectCard);
-                        projectsAdded++;
-                        
-                        // If no projects were added (all were forks), show a message
-                        if (projectsAdded === 0 && project === projects[projects.length - 1]) {
-                            githubProjectsContainer.innerHTML = '<p class="no-projects">No non-forked projects found. Check back later!</p>';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching project languages:', error);
-                        // Continue with other projects even if one fails
-                    });
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching GitHub projects:', error);
-            githubProjectsContainer.innerHTML = '<p class="error-message">Failed to load GitHub projects. Please try again later.</p>';
+    if (!githubProjectsContainer) {
+        console.error('GitHub projects container not found');
+        return;
+    }
+
+    try {
+        // Show loading state
+        githubProjectsContainer.innerHTML = '<div class="loading">Loading projects...</div>';
+        console.log('Fetching GitHub projects...');
+
+        // Fetch user's repositories with a timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        
+        const response = await fetch('https://api.github.com/users/MykeShale/repos?sort=updated&direction=desc', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/vnd.github.v3+json',
+                'User-Agent': 'Portfolio-Website'
+            },
+            signal: controller.signal
         });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+            throw new Error(`GitHub API error: ${response.status} - ${response.statusText}`);
+        }
+
+        const repos = await response.json();
+        console.log(`Fetched ${repos.length} repositories`);
+        
+        // Filter out forked repositories and sort by stars
+        const projects = repos
+            .filter(repo => !repo.fork)
+            .sort((a, b) => b.stargazers_count - a.stargazers_count)
+            .slice(0, 6); // Limit to top 6 repositories
+
+        console.log(`Found ${projects.length} non-forked projects`);
+
+        if (projects.length === 0) {
+            // If no projects found, show sample projects
+            displaySampleProjects();
+            return;
+        }
+
+        // Create project cards
+        const projectCards = projects.map(project => `
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>${project.name}</h3>
+                    <p>${project.description || 'No description available'}</p>
+                    <div class="project-tech">
+                        ${project.language ? `<span>${project.language}</span>` : ''}
+                        <span>⭐ ${project.stargazers_count}</span>
+                        <span>🔄 ${project.forks_count}</span>
+                    </div>
+                    <a href="${project.html_url}" target="_blank" class="project-link">
+                        View Project <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        `).join('');
+
+        githubProjectsContainer.innerHTML = projectCards;
+        console.log('GitHub projects loaded successfully');
+
+    } catch (error) {
+        console.error('Error fetching GitHub projects:', error);
+        
+        // If there's an error, show sample projects
+        displaySampleProjects();
+    }
 }
+
+// Function to display sample projects
+function displaySampleProjects() {
+    const githubProjectsContainer = document.getElementById('githubProjects');
+    
+    const sampleProjects = [
+        {
+            name: 'Portfolio Website',
+            description: 'A responsive portfolio website built with HTML, CSS, and JavaScript.',
+            language: 'JavaScript',
+            stars: 5,
+            forks: 2,
+            url: 'https://github.com/MykeShale/portfolio'
+        },
+        {
+            name: 'E-commerce Platform',
+            description: 'A full-stack e-commerce platform with React, Node.js, and MongoDB.',
+            language: 'JavaScript',
+            stars: 8,
+            forks: 3,
+            url: 'https://github.com/MykeShale/ecommerce'
+        },
+        {
+            name: 'Task Management App',
+            description: 'A task management application with user authentication and real-time updates.',
+            language: 'TypeScript',
+            stars: 12,
+            forks: 4,
+            url: 'https://github.com/MykeShale/task-manager'
+        },
+        {
+            name: 'Weather Dashboard',
+            description: 'A weather dashboard that displays current and forecasted weather data.',
+            language: 'JavaScript',
+            stars: 7,
+            forks: 2,
+            url: 'https://github.com/MykeShale/weather-dashboard'
+        },
+        {
+            name: 'Recipe Finder',
+            description: 'An application to search and save recipes from various sources.',
+            language: 'JavaScript',
+            stars: 6,
+            forks: 1,
+            url: 'https://github.com/MykeShale/recipe-finder'
+        },
+        {
+            name: 'Budget Tracker',
+            description: 'A PWA for tracking expenses and income with offline functionality.',
+            language: 'JavaScript',
+            stars: 9,
+            forks: 3,
+            url: 'https://github.com/MykeShale/budget-tracker'
+        }
+    ];
+    
+    const projectCards = sampleProjects.map(project => `
+        <div class="project-card">
+            <div class="project-content">
+                <h3>${project.name}</h3>
+                <p>${project.description}</p>
+                <div class="project-tech">
+                    <span>${project.language}</span>
+                    <span>⭐ ${project.stars}</span>
+                    <span>🔄 ${project.forks}</span>
+                </div>
+                <a href="${project.url}" target="_blank" class="project-link">
+                    View Project <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    `).join('');
+    
+    githubProjectsContainer.innerHTML = `
+        <div class="sample-projects-notice">
+            <p>Sample projects shown (GitHub API unavailable)</p>
+        </div>
+        ${projectCards}
+    `;
+}
+
+// Add styles for loading and error states
+const style = document.createElement('style');
+style.textContent = `
+    .loading, .no-projects, .error-message {
+        text-align: center;
+        padding: 2rem;
+        background: var(--card-bg);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px var(--shadow-color);
+        margin: 1rem 0;
+    }
+
+    .loading {
+        color: var(--text-color);
+        font-size: 1.1rem;
+    }
+
+    .no-projects {
+        color: var(--text-color);
+        opacity: 0.8;
+    }
+
+    .error-message {
+        color: var(--error-color);
+    }
+
+    .project-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px var(--shadow-color);
+        transition: transform 0.3s ease;
+        border: 1px solid var(--border-color);
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-content h3 {
+        color: var(--text-color);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .project-content p {
+        color: var(--text-color);
+        opacity: 0.8;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .project-tech {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .project-tech span {
+        background: var(--card-bg);
+        color: var(--text-color);
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        border: 1px solid var(--border-color);
+    }
+
+    .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+    }
+`;
+document.head.appendChild(style);
 
 // Call the function when the page loads
 document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
@@ -467,3 +639,6 @@ themeTransitionStyle.textContent = `
     }
 `;
 document.head.appendChild(themeTransitionStyle);
+
+// Ensure GitHub projects are loaded
+fetchGitHubProjects();
