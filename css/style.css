@@ -438,6 +438,10 @@ body {
   animation-delay: 4s;
 }
 
+.section-header{
+  padding-top: 4rem;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
